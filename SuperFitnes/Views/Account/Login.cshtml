@@ -1,0 +1,17 @@
+﻿<!-- Logic.cshtml -->
+@using SuperFitnes.Features.DtoModels.User
+@model EditUser
+
+<h2>Edit User</h2>
+
+<form asp-controller="Manage" asp-action="Logic" method="post">
+    <div class="form-group">
+        <label asp-for="Username"></label>
+        <input asp-for="Username" class="form-control" />
+        <span asp-validation-for="Username" class="text-danger"></span>
+    </div>
+
+    <!-- Добавьте другие поля модели EditUser здесь -->
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
