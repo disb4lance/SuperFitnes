@@ -17,6 +17,7 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("DefoultConnectio
 )
 );
 
+builder.Services.AddControllers();
 
 builder.Services.AddControllersWithViews();
 
@@ -63,5 +64,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 app.MapControllerRoute(name: "defoult", pattern: "{controller = Home}/{action=Index}/{id?}");
+//app.MapControllerRoute(name: "defoult", pattern: "{controller = Account}/{action=Register}/{id?}");
+
 
 app.Run();

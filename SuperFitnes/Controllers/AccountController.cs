@@ -6,6 +6,7 @@
     using SuperFitnes.Features.DtoModels.User;
     using SuperFitnes.Features.Interfaces;
 
+    [Route("Account")]
     public class AccountController : Controller
     {
 
@@ -17,7 +18,7 @@
         }
 
 
-        [HttpGet]
+        [HttpGet, Route("Register")]
         public async Task<ActionResult> Register()
         {
             return View();
