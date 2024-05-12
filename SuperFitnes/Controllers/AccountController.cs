@@ -24,8 +24,8 @@
             return View();
         }
 
-        [HttpPost]
-        public async Task<ActionResult> Register(EditUser model)
+        [HttpPost(nameof(CreateRegister), Name = "CreateRegister")]
+        public async Task<ActionResult> CreateRegister(EditUser model)
         {
             if (ModelState.IsValid)
             {
@@ -38,7 +38,7 @@
             }
 
             // Если валидация модели не удалась, вернуть представление с ошибками
-            return View(model);
+            return View(nameof(Register), model);
         }
 
 

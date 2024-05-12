@@ -1,9 +1,29 @@
-﻿@using SuperFitnes.Features.DtoModels.User
+﻿@using SuperFitnes.Controllers
+@using SuperFitnes.Features.DtoModels.User
 @model EditUser
 
 <h2>Register</h2>
+@using (Html.BeginForm(nameof(AccountController.CreateRegister), "Account", FormMethod.Post)) {
 
-<form asp-controller="Account" asp-action="Register" method="post">
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(m => m.IsnNode)
+
+    @Html.ValidationMessageFor(m => m.IsnNode)
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.FirstName)
+        @Html.TextBoxFor(m => m.FirstName, htmlAttributes: new  {@class = "from-control"})
+        @Html.ValidationMessageFor(m => m.FirstName)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.LastName)
+        @Html.TextBoxFor(m => m.LastName, htmlAttributes: new { @class = "from-control" })
+        @Html.ValidationMessageFor(m => m.LastName)
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+}
+@* <form asp-controller="Account" asp-action="CreateRegister" method="post">
     <div class="form-group">
         <label asp-for="FirstName"></label>
         <input asp-for="FirstName" class="form-control" />
@@ -13,9 +33,9 @@
     <div class="form-group">
         <label asp-for="LastName"></label>
         <input asp-for="LastName" class="form-control" />
-        <span asp-validation-for="LastName" class="text-danger"></span>
+        <span asp-validation-for="LastName" class="text-danger"></span> 
     </div>
 
 
     <button type="submit" class="btn btn-primary">Register</button>
-</form>
+</form> *@

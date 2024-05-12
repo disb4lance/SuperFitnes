@@ -3,13 +3,14 @@ using Classes.Database;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using SuperFitnes.Extensions;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDbContext<DataContext>(options =>
-options.UseSqlServer(builder.Configuration.GetConnectionString("DefoultConnection"), o =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"), o =>
 {
     o.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
 
@@ -21,9 +22,9 @@ builder.Services.AddControllers();
 
 builder.Services.AddControllersWithViews();
 
-//builder.Services.AddAutoMapper(typeof(Program).Assembly);
+builder.Services.AddAutoMapper(typeof(Program));
 
-//builder.Services.AddWebServices();
+builder.Services.AddWebServices();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
@@ -68,3 +69,4 @@ app.MapControllerRoute(name: "defoult", pattern: "{controller = Home}/{action=In
 
 
 app.Run();
+public partial class Program;

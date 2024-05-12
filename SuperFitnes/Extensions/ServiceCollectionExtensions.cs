@@ -2,6 +2,8 @@
 using Logic.Extenstions;
 using Microsoft.AspNetCore.Identity;
 using SuperFitnes.Features.Managers;
+using Logic.Interfaces.Services;
+using Logic.Services;
 namespace SuperFitnes.Extensions
 {
     public static class ServiceCollectionExtensions

@@ -8,10 +8,10 @@ namespace SuperFitnes.Features.Interfaces
     public interface IUserManager
     {
         Guid Create(EditUser User);
-        public void Update(EditUser updateCenter);
-        public void Delete(Guid isnNode);
+        //public void Update(EditUser updateCenter);
+        //public void Delete(Guid isnNode);
 
-        public UserDto GetCenter(Guid isnNode);
-        public UserDto[] GetListCenters(UserFilterDto centerFilter);
+        //public UserDto GetCenter(Guid isnNode);
+        //public UserDto[] GetListCenters(UserFilterDto centerFilter);
     }
 }

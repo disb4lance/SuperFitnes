@@ -16,7 +16,6 @@ namespace Logic.Repositories
         {
             user.IsnNode = Guid.NewGuid();
             dataContext.Users.Add(user);
-            dataContext.SaveChanges();
             return user;
 
         }
