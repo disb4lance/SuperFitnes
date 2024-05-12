@@ -4,6 +4,7 @@ using Classes.models;
 using Logic.DtoModels.Filters;
 using Logic.Interfaces.Repositories;
 using Logic.Interfaces.Services;
+using Microsoft.EntityFrameworkCore;
 using SuperFitnes.Features.DtoModels.User;
 using SuperFitnes.Features.Interfaces;
 using System.Data;
@@ -38,6 +39,16 @@ namespace SuperFitnes.Features.Managers
             _dataContext.SaveChanges();
 
             return user.IsnNode;
+        }
+
+        public bool FindByFirstName(string firstName)
+        {
+            // Используйте LINQ запрос для поиска пользователя по FirstName
+            var a = _dataContext.Users.FirstOrDefault(u => u.FirstName == firstName);
+            if (a != null) {
+                return true;
+            }
+            return false;
         }
 
         //public void Update(EditUser updateCenter)

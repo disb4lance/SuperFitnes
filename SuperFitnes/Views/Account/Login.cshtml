@@ -1,16 +1,21 @@
-﻿
+﻿@using SuperFitnes.Controllers
 @using SuperFitnes.Features.DtoModels.User
 @model EditUser
 
-<h2>Edit User</h2>
+<h2>Log in</h2>
+@using (Html.BeginForm(nameof(AccountController.CreateLogin), "Account", FormMethod.Post))
+{
 
-<form asp-controller="Manage" asp-action="Logic" method="post">
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(m => m.IsnNode)
+
+    @Html.ValidationMessageFor(m => m.IsnNode)
+
     <div class="form-group">
-        <label asp-for="Username"></label>
-        <input asp-for="Username" class="form-control" />
-        <span asp-validation-for="Username" class="text-danger"></span>
+        @Html.LabelFor(m => m.FirstName)
+        @Html.TextBoxFor(m => m.FirstName, htmlAttributes: new { @class = "from-control" })
+        @Html.ValidationMessageFor(m => m.FirstName)
     </div>
-
-
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+    <button type="submit" class="btn btn-primary">Register</button>
+}

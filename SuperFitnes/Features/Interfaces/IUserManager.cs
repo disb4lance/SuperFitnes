@@ -8,6 +8,7 @@ namespace SuperFitnes.Features.Interfaces
     public interface IUserManager
     {
         Guid Create(EditUser User);
+        public bool FindByFirstName(string firstName);
         //public void Update(EditUser updateCenter);
         //public void Delete(Guid isnNode);
 

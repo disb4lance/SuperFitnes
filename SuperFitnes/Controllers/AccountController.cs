@@ -42,19 +42,30 @@
         }
 
 
-        [HttpGet]
+        [HttpGet, Route("Login")]
         public async Task<ActionResult> Login()
         {
             return View();
         }
 
-        [HttpPost]
-        public async Task<ActionResult> Login(EditUser model)
+        [HttpPost(nameof(CreateLogin), Name = "CreateLogin")]
+        public async Task<ActionResult> CreateLogin(string firstName)
         {
-            // Ваша логика аутентификации здесь
+            bool user = userManager.FindByFirstName(firstName);
 
-            // Пример редиректа на главную страницу после входа
-            return RedirectToAction("Index", "Home");
+            // Если пользователь найден, аутентифицировать его и перенаправить на главную страницу
+            if (user)
+            {
+                // Реализуйте аутентификацию пользователя
+                // Например, можно использовать HttpContext.SignInAsync() для аутентификации пользователя
+
+                // Перенаправить на главную страницу
+                return RedirectToAction("Index", "Home");
+            }
+
+            // Если пользователь не найден, вернуть представление с сообщением об ошибке
+            ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+            return View();
         }
 
         
