@@ -16,9 +16,7 @@ namespace Classes.Database
 
         public virtual DbSet<User> Users { get; set; }
 
-        public virtual DbSet<TrainingProgram> TrainingPrograms { get; set; }
-
-        public virtual DbSet<Training> Trainings { get; set; }
+        public virtual DbSet<Train> Trains{ get; set; }
 
         public virtual DbSet<PhysicalMetrics> PhysicalMetricss { get; set; }
 

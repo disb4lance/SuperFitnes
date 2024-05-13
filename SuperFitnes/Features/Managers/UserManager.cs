@@ -32,7 +32,8 @@ namespace SuperFitnes.Features.Managers
             {
                 IsnNode = User.IsnNode ?? Guid.NewGuid(),
                 FirstName = User.FirstName,
-                LastName = User.LastName
+                LastName = User.LastName,
+                Password = User.Password
 
             };
             _userRepository.Create(_dataContext, user);

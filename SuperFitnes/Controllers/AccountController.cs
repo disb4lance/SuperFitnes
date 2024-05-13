@@ -60,7 +60,7 @@
                 // Например, можно использовать HttpContext.SignInAsync() для аутентификации пользователя
 
                 // Перенаправить на главную страницу
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Main");
             }
 
             // Если пользователь не найден, вернуть представление с сообщением об ошибке

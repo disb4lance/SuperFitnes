@@ -17,5 +17,10 @@
         @Html.TextBoxFor(m => m.FirstName, htmlAttributes: new { @class = "from-control" })
         @Html.ValidationMessageFor(m => m.FirstName)
     </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Password)
+        @Html.TextBoxFor(m => m.Password, htmlAttributes: new { @class = "from-control" })
+        @Html.ValidationMessageFor(m => m.Password)
+    </div>
     <button type="submit" class="btn btn-primary">Register</button>
 }

@@ -11,5 +11,8 @@ namespace SuperFitnes.Features.DtoModels.User
         [Required]
         public string LastName { get; set; }
 
+        [Required]
+        public string Password { get; set; }
+
     }
 }

@@ -17,6 +17,7 @@ namespace Logic.Extenstions
         {
             services.AddSingleton<IUserService, UserService>();
             services.AddSingleton<IUserRepository, UserRepository>();
+            services.AddTransient<IExerciseRepository, ExerciseRepository>();
         }
     }
 }
