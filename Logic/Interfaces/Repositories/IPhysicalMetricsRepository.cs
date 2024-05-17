@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace Logic.Interfaces.Repositories
 {
-    public interface IExerciseRepository
+    public interface IPhysicalMetricsRepository
     {
-        public Exercise Create(DataContext dataContext, Exercise exercise);
+        PhysicalMetrics Create(DataContext dataContext, PhysicalMetrics physicalMetrics);
     }
 }

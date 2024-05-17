@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using SuperFitnes.Features.DtoModels.User;
 using SuperFitnes.Features.Interfaces;
 using System.Data;
+using System.Security.Principal;
 
 namespace SuperFitnes.Features.Managers
 {

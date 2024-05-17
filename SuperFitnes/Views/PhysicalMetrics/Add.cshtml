@@ -1,0 +1,26 @@
+﻿@using SuperFitnes.Controllers
+@using SuperFitnes.Features.DtoModels.PhysicalMetrics
+@model EditPhysicalMetrics
+
+<h2>Log in</h2>
+@using (Html.BeginForm(nameof(PhysicalMetricsController.CreateAdd), "PhysicalMetrics", FormMethod.Post))
+{
+
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(m => m.IsnNode)
+
+    @Html.ValidationMessageFor(m => m.IsnNode)
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Weight)
+        @Html.TextBoxFor(m => m.Weight, htmlAttributes: new { @class = "from-control" })
+        @Html.ValidationMessageFor(m => m.Weight)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.BodyMeasurements)
+        @Html.TextBoxFor(m => m.BodyMeasurements, htmlAttributes: new { @class = "from-control" })
+        @Html.ValidationMessageFor(m => m.BodyMeasurements)
+    </div>
+    <button type="submit" class="btn btn-primary">OK</button>
+}

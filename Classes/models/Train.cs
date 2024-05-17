@@ -18,7 +18,11 @@ namespace Classes.models
         public Guid IsnNode { get; set; }
         public DateTime DateTime { get; set; }
 
+        // Внешний ключ для пользователя
+        public Guid UserId { get; set; }
 
+        // Навигационное свойство для пользователя
+        public virtual User User { get; set; }
 
         // Навигационное свойство для упражнений в тренировке
         public virtual ICollection<Exercise> Exercises { get; set; }

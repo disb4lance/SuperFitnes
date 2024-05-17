@@ -13,6 +13,8 @@ namespace SuperFitnes.Extensions
             services.AddLogicServises();
 
             services.AddTransient<IUserManager, UserManager>();
+            services.AddTransient<IPhysicalMetricsManager, PhysicalMetricsManager>();
+
         }
     }
 }
