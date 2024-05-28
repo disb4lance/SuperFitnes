@@ -1,2 +1,5 @@
-﻿
-<a href="@Url.Action("Add", "PhysicalMetrics")" class="btn btn-primary">PhysicalMetrics</a>
+﻿@using SuperFitnes.Features.DtoModels.UserIdModel
+@model IdCurrentUser
+<a href="@Url.Action("Add", "PhysicalMetrics", new {id = Model.Id})" class="btn btn-primary">Физические показатели</a>
+
+<a href="@Url.Action("AddTrain", "Train", new {id = Model.Id})" class="btn btn-primary">Добавить тренировку</a>

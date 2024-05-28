@@ -43,14 +43,20 @@ namespace SuperFitnes.Features.Managers
             return user.IsnNode;
         }
 
-        public bool FindByFirstName(string firstName)
+        public User FindByFirstName(string firstName)
         {
             // Используйте LINQ запрос для поиска пользователя по FirstName
             var a = _dataContext.Users.FirstOrDefault(u => u.FirstName == firstName);
             if (a != null) {
-                return true;
+                return a;
             }
-            return false;
+            return a;
+        }
+        public User FindByIsnNode(Guid id)
+        {
+            // Используйте LINQ запрос для поиска пользователя по FirstName
+            var a = _dataContext.Users.FirstOrDefault(u => u.IsnNode == id);
+            return a;
         }
 
         //public void Update(EditUser updateCenter)

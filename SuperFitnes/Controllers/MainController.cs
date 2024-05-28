@@ -1,6 +1,7 @@
 ﻿namespace SuperFitnes.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
+    using SuperFitnes.Features.DtoModels.UserIdModel;
 
     [Route("Main")]
     public class MainController : Controller
@@ -10,9 +11,13 @@
         }
 
         [HttpGet, Route("Index")]
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(Guid id)
         {
-            return View();
+            var viewModel = new IdCurrentUser
+            {
+                Id = id
+            };
+            return View(viewModel);
         }
     }
 }

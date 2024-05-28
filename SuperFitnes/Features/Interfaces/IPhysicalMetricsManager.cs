@@ -1,9 +1,10 @@
-﻿using SuperFitnes.Features.DtoModels.PhysicalMetrics;
+﻿using Classes.models;
+using SuperFitnes.Features.DtoModels.PhysicalMetrics;
 
 namespace SuperFitnes.Features.Interfaces
 {
     public interface IPhysicalMetricsManager
     {
-        Guid Create(EditPhysicalMetrics PhysicalMetrics);
+        void Create(PhysicalMetrics PhysicalMetrics);
     }
 }

@@ -19,6 +19,10 @@ namespace Logic.Extenstions
             services.AddSingleton<IUserRepository, UserRepository>();
             services.AddSingleton<IPhysicalMetricsRepository, PhysicalMetricsRepository>();
             services.AddSingleton<IPhysicalMetricsService, PhysicalMetricsService>();
+            services.AddSingleton<ITrainRepository, TrainRepository>();
+            services.AddSingleton<ITrainService, TrainService>();
+            services.AddSingleton<IExerciseService, ExerciseService>();
+            services.AddSingleton<IExerciseRepository, ExerciseRepository>();
         }
     }
 }

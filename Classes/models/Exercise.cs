@@ -25,7 +25,6 @@ namespace Classes.models
         // Внешний ключ для тренировки
         public Guid TrainingId { get; set; }
 
-        // Навигационное свойство для тренировки
-        public virtual Train Train{ get; set; }
+
     }
 }

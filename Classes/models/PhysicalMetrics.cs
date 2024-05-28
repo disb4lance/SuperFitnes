@@ -26,7 +26,5 @@ namespace Classes.models
         // Внешний ключ для пользователя
         public Guid UserId { get; set; }
 
-        // Навигационное свойство для пользователя
-        public virtual User User { get; set; }
     }
 }

@@ -2,25 +2,81 @@
 @using SuperFitnes.Features.DtoModels.User
 @model EditUser
 
-<h2>Log in</h2>
-@using (Html.BeginForm(nameof(AccountController.CreateLogin), "Account", FormMethod.Post))
-{
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
 
-    @Html.ValidationSummary(true)
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
 
-    @Html.HiddenFor(m => m.IsnNode)
+        .login-container {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
 
-    @Html.ValidationMessageFor(m => m.IsnNode)
+            .login-container h2 {
+                margin-bottom: 1.5rem;
+            }
 
-    <div class="form-group">
-        @Html.LabelFor(m => m.FirstName)
-        @Html.TextBoxFor(m => m.FirstName, htmlAttributes: new { @class = "from-control" })
-        @Html.ValidationMessageFor(m => m.FirstName)
+        footer {
+            background-color: #343a40;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="login-container">
+            <h2>Log in</h2>
+            @using (Html.BeginForm(nameof(AccountController.CreateLogin), "Account", FormMethod.Post))
+            {
+                @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+
+                @Html.HiddenFor(m => m.IsnNode)
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.FirstName)
+                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Password)
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Countinue</button>
+            }
+        </div>
     </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password)
-        @Html.TextBoxFor(m => m.Password, htmlAttributes: new { @class = "from-control" })
-        @Html.ValidationMessageFor(m => m.Password)
-    </div>
-    <button type="submit" class="btn btn-primary">Register</button>
-}
+    <footer>
+        &copy; @DateTime.Now.Year SuperFitnes. All rights reserved.
+    </footer>
+</body>
+</html>

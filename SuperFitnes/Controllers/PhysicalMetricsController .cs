@@ -11,17 +11,21 @@ using SuperFitnes.Features.Managers;
 public class PhysicalMetricsController : Controller
 {
     private readonly IPhysicalMetricsManager _physicalMetricsManager;
+    private readonly IUserManager _userManager;
 
-    public PhysicalMetricsController(IPhysicalMetricsManager physicalMetricsManager)
+
+    public PhysicalMetricsController(IPhysicalMetricsManager physicalMetricsManager, IUserManager userManager)
     {
-        this._physicalMetricsManager = _physicalMetricsManager;
+        this._physicalMetricsManager = physicalMetricsManager;
+        this._userManager = userManager;
     }
 
 
     [HttpGet, Route("Add")]
-    public async Task<ActionResult> Add()
+    public async Task<ActionResult> Add(Guid id)
     {
-        return View();
+        var editPhysicalMetrics = new EditPhysicalMetrics { UserId = id };
+        return View(editPhysicalMetrics);
     }
 
     [HttpPost(nameof(CreateAdd), Name = "CreateAdd")]
@@ -29,16 +33,22 @@ public class PhysicalMetricsController : Controller
     {
         if (ModelState.IsValid)
         {
+            var newPhysicalMetrics = new PhysicalMetrics
+            {
+                //IsnNode = model.IsnNode == Guid.Empty ? Guid.NewGuid() : model.IsnNode,
+                Weight = model.Weight,
+                BodyMeasurements = model.BodyMeasurements,
+                UserId = model.UserId,
+                Date = DateTime.Now,
+            };
+            // Сохранение физических показателей
+            _physicalMetricsManager.Create(newPhysicalMetrics);
 
-            // Добавление пользователя в контекст данных и сохранение его в базе данных
-            _physicalMetricsManager.Create(model);
 
-            // Пример редиректа на главную страницу после регистрации
-            return RedirectToAction("Index", "Main");
+            return RedirectToAction("Index", "Main"); // Перенаправление на главную страницу
         }
-
-        // Если валидация модели не удалась, вернуть представление с ошибками
-        return View(nameof(Add), model);
+        return View(model);
     }
+
 
 }

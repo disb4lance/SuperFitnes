@@ -23,9 +23,6 @@ namespace Classes.models
 
         public string Password {  get; set; }
 
-        // Навигационное свойство для физических показателей пользователя
-        public virtual ICollection<PhysicalMetrics> PhysicalMetrics { get; set; }
-        // Навигационное свойство для списка тренировок пользователя
-        public virtual ICollection<Train> UserTrains { get; set; }
+      
     }
 }

@@ -1,4 +1,5 @@
-﻿@using SuperFitnes.Controllers
+﻿
+@using SuperFitnes.Controllers
 @using SuperFitnes.Features.DtoModels.PhysicalMetrics
 @model EditPhysicalMetrics
 
@@ -12,6 +13,12 @@
 
     @Html.ValidationMessageFor(m => m.IsnNode)
 
+    @Html.HiddenFor(m => m.Date)
+
+    @Html.ValidationMessageFor(m => m.Date)
+
+    @Html.HiddenFor(m => m.UserId)
+
     <div class="form-group">
         @Html.LabelFor(m => m.Weight)
         @Html.TextBoxFor(m => m.Weight, htmlAttributes: new { @class = "from-control" })
@@ -23,4 +30,4 @@
         @Html.ValidationMessageFor(m => m.BodyMeasurements)
     </div>
     <button type="submit" class="btn btn-primary">OK</button>
-}
+} 

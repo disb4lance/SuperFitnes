@@ -34,7 +34,7 @@
                 userManager.Create(model);
 
                 // Пример редиректа на главную страницу после регистрации
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Main", new { id = model.IsnNode});
             }
 
             // Если валидация модели не удалась, вернуть представление с ошибками
@@ -49,18 +49,18 @@
         }
 
         [HttpPost(nameof(CreateLogin), Name = "CreateLogin")]
-        public async Task<ActionResult> CreateLogin(string firstName)
+        public async Task<ActionResult> CreateLogin(User USER)
         {
-            bool user = userManager.FindByFirstName(firstName);
+            User user = userManager.FindByFirstName(USER.FirstName);
 
             // Если пользователь найден, аутентифицировать его и перенаправить на главную страницу
-            if (user)
+            if (user!=null)
             {
                 // Реализуйте аутентификацию пользователя
                 // Например, можно использовать HttpContext.SignInAsync() для аутентификации пользователя
 
                 // Перенаправить на главную страницу
-                return RedirectToAction("Index", "Main");
+                return RedirectToAction("Index", "Main", new { id = user.IsnNode });
             }
 
             // Если пользователь не найден, вернуть представление с сообщением об ошибке

@@ -7,6 +7,7 @@ using SuperFitnes.Features.DtoModels.PhysicalMetrics;
 using Classes.models;
 using Microsoft.EntityFrameworkCore;
 using SuperFitnes.Features.Interfaces;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SuperFitnes.Features.Managers
 {
@@ -25,19 +26,13 @@ namespace SuperFitnes.Features.Managers
             _PhysicalMetricsService = PhysicalMetricsService;
             _dataContext = dataContext;
         }
-        public Guid Create(EditPhysicalMetrics PhysicalMetrics)
+        public void Create(PhysicalMetrics PhysicalMetrics)
         {
-            var newPhysicalMetrics = new PhysicalMetrics
-            {
-                IsnNode = PhysicalMetrics.IsnNode == Guid.Empty ? Guid.NewGuid() : PhysicalMetrics.IsnNode,
-                Weight = PhysicalMetrics.Weight,
-                BodyMeasurements = PhysicalMetrics.BodyMeasurements,
-            };
 
-            _dataContext.PhysicalMetricss.Add(newPhysicalMetrics);
+            _dataContext.PhysicalMetricss.Add(PhysicalMetrics);
             _dataContext.SaveChanges();
 
-            return newPhysicalMetrics.IsnNode;
+            //return PhysicalMetrics.IsnNode;
         }
     }
 }
