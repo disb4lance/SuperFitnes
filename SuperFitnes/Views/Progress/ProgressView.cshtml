@@ -1,11 +1,77 @@
-﻿@{
-    ViewBag.Title = "Progress View";
-}
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress View</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
 
-<h2>Progress View</h2>
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
 
-<div>
-    <p>Total trainings count for last month: @ViewBag.TrainingsCount</p>
-    <p>Strength exercises count for last month: @ViewBag.StrengthExercisesCount</p>
-    <p>Cardio exercises count for last month: @ViewBag.CardioExercisesCount</p>
-</div>
+        .login-container {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        footer {
+            background-color: #343a40;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="login-container">
+            <h2>Progress View</h2>
+            <div>
+                <h3>Trainings Count for Last Month: @ViewBag.TrainingsCount</h3>
+                <h3>Strength Exercises Count for Last Month: @ViewBag.StrengthExercisesCount</h3>
+                <h3>Cardio Exercises Count for Last Month: @ViewBag.CardioExercisesCount</h3>
+            </div>
+
+            @if (ViewBag.WeightChange != null && ViewBag.BodyMeasurementsChange != null)
+            {
+                <div>
+                    <h3>Weight Change: @ViewBag.WeightChange</h3>
+                    <h3>Body Measurements Change: @ViewBag.BodyMeasurementsChange</h3>
+                </div>
+            }
+            else
+            {
+                <div>
+                    <h3>No Physical Metrics Data Available</h3>
+                </div>
+            }
+        </div>
+    </div>
+    <footer>
+        &copy; @DateTime.Now.Year SuperFitnes. All rights reserved.
+    </footer>
+</body>
+</html>

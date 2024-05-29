@@ -48,5 +48,11 @@ namespace SuperFitnes.Features.Managers
                 .Count();
         }
 
+        public Guid GetUserId(Guid userId)
+        {
+            var a = _dataContext.Trains.FirstOrDefault(u => u.IsnNode == userId);
+            return a?.UserId ?? Guid.Empty;
+        }
+
     }
 }

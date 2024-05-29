@@ -2,12 +2,13 @@
 
 namespace SuperFitnes.Features.DtoModels.User
 {
-    public sealed record EditUser
+    public class EditUser
     {
-        public Guid? IsnNode { get; set; }
+        public Guid IsnNode { get; set; }
 
         [Required]
         public string FirstName { get; set; }
+
         [Required]
         public string LastName { get; set; }
 

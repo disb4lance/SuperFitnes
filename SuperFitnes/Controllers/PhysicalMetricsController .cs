@@ -35,7 +35,7 @@ public class PhysicalMetricsController : Controller
         {
             var newPhysicalMetrics = new PhysicalMetrics
             {
-                //IsnNode = model.IsnNode == Guid.Empty ? Guid.NewGuid() : model.IsnNode,
+                IsnNode = model.IsnNode == Guid.Empty ? Guid.NewGuid() : model.IsnNode,
                 Weight = model.Weight,
                 BodyMeasurements = model.BodyMeasurements,
                 UserId = model.UserId,
@@ -45,7 +45,7 @@ public class PhysicalMetricsController : Controller
             _physicalMetricsManager.Create(newPhysicalMetrics);
 
 
-            return RedirectToAction("Index", "Main"); // Перенаправление на главную страницу
+            return RedirectToAction("Index", "Main", new { id = newPhysicalMetrics.UserId}); // Перенаправление на главную страницу
         }
         return View(model);
     }

@@ -17,6 +17,7 @@ namespace SuperFitnes.Controllers
         private readonly IExerciseManager _exerciseManager;
 
 
+
         public TrainController(ITrainManager physicalMetricsManager, IUserManager userManager, IExerciseManager exerciseManager)
         {
             this._trainMetricsManager = physicalMetricsManager;
@@ -65,7 +66,8 @@ namespace SuperFitnes.Controllers
 
                 if (action == "continue")
                 {
-                    return RedirectToAction("Index", "Main"); // Перенаправление на главную страницу
+
+                    return RedirectToAction("Index", "Main", new { id = _userManager.GetIsnNode(newExtencion.TrainingId) }); // Перенаправление на главную страницу
                 }
                 else if (action == "addExercise")
                 {

@@ -1,34 +1,92 @@
-﻿
-@using SuperFitnes.Controllers
+﻿@using SuperFitnes.Controllers
 @using SuperFitnes.Features.DtoModels.PhysicalMetrics
 @model EditPhysicalMetrics
 
-<h2>Log in</h2>
-@using (Html.BeginForm(nameof(PhysicalMetricsController.CreateAdd), "PhysicalMetrics", FormMethod.Post))
-{
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Текущие данные</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
 
-    @Html.ValidationSummary(true)
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
 
-    @Html.HiddenFor(m => m.IsnNode)
+        .form-container {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
 
-    @Html.ValidationMessageFor(m => m.IsnNode)
+            .form-container h2 {
+                margin-bottom: 1.5rem;
+            }
 
-    @Html.HiddenFor(m => m.Date)
+        .form-group {
+            margin-bottom: 1rem;
+        }
 
-    @Html.ValidationMessageFor(m => m.Date)
+        footer {
+            background-color: #343a40;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="form-container">
+            <h2>Текущие данные</h2>
+            @using (Html.BeginForm(nameof(PhysicalMetricsController.CreateAdd), "PhysicalMetrics", FormMethod.Post))
+            {
+                @Html.ValidationSummary(true)
 
-    @Html.HiddenFor(m => m.UserId)
+                @Html.HiddenFor(m => m.IsnNode)
+                @Html.ValidationMessageFor(m => m.IsnNode)
 
-    <div class="form-group">
-        @Html.LabelFor(m => m.Weight)
-        @Html.TextBoxFor(m => m.Weight, htmlAttributes: new { @class = "from-control" })
-        @Html.ValidationMessageFor(m => m.Weight)
+                @Html.HiddenFor(m => m.Date)
+                @Html.ValidationMessageFor(m => m.Date)
+
+                @Html.HiddenFor(m => m.UserId)
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Weight, "Вес")
+                    @Html.TextBoxFor(m => m.Weight, htmlAttributes: new { @class = "form-control" }) <!-- Исправлено с "from-control" на "form-control" -->
+                    @Html.ValidationMessageFor(m => m.Weight)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.BodyMeasurements, "Обхват талии")
+                    @Html.TextBoxFor(m => m.BodyMeasurements, htmlAttributes: new { @class = "form-control" }) <!-- Исправлено с "from-control" на "form-control" -->
+                    @Html.ValidationMessageFor(m => m.BodyMeasurements)
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Добавить</button>
+            }
+        </div>
     </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.BodyMeasurements)
-        @Html.TextBoxFor(m => m.BodyMeasurements, htmlAttributes: new { @class = "from-control" })
-        @Html.ValidationMessageFor(m => m.BodyMeasurements)
-    </div>
-    <button type="submit" class="btn btn-primary">OK</button>
-
-} 
+    <footer>
+        &copy; @DateTime.Now.Year SuperFitnes. Все права защищены.
+    </footer>
+</body>
+</html>

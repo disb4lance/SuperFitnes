@@ -18,11 +18,15 @@ namespace Classes.models
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public Guid IsnNode { get; set; }
+
+        [Required]
         public string FirstName { get; set; }
+        [Required]
         public string LastName { get; set; }
+        [Required]
 
         public string Password {  get; set; }
 
-      
+        //[EmailAddress]
     }
 }

@@ -30,11 +30,17 @@
             if (ModelState.IsValid)
             {
 
-                // Добавление пользователя в контекст данных и сохранение его в базе данных
-                userManager.Create(model);
+                var _model = new EditUser
+                {
+                    IsnNode = model.IsnNode == Guid.Empty ? Guid.NewGuid() : model.IsnNode,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Password = model.Password,
+                };
+                userManager.Create(_model);
 
-                // Пример редиректа на главную страницу после регистрации
-                return RedirectToAction("Index", "Main", new { id = model.IsnNode});
+                
+                return RedirectToAction("Index", "Main", new { id = _model.IsnNode});
             }
 
             // Если валидация модели не удалась, вернуть представление с ошибками
@@ -49,9 +55,9 @@
         }
 
         [HttpPost(nameof(CreateLogin), Name = "CreateLogin")]
-        public async Task<ActionResult> CreateLogin(User USER)
+        public async Task<ActionResult> CreateLogin(EditUser USER)
         {
-            User user = userManager.FindByFirstName(USER.FirstName);
+            User user = userManager.FindByFirstName(USER.FirstName, USER.Password);
 
             // Если пользователь найден, аутентифицировать его и перенаправить на главную страницу
             if (user!=null)
@@ -65,7 +71,7 @@
 
             // Если пользователь не найден, вернуть представление с сообщением об ошибке
             ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-            return View();
+            return View("Login", USER);
         }
 
         

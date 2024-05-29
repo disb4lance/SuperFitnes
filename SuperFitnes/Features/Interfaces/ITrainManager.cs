@@ -10,5 +10,7 @@ namespace SuperFitnes.Features.Interfaces
     {
         int GetTrainingsCountForLastMonth(Guid userId);
         Guid Create(EditTrain train);
+        Guid GetUserId(Guid userId);
+
     }
 }

@@ -34,5 +34,24 @@ namespace SuperFitnes.Features.Managers
 
             //return PhysicalMetrics.IsnNode;
         }
+
+        public async Task<PhysicalMetrics> GetFirstPhysicalMetrics(Guid userId)
+        {
+            // Извлекаем первое измерение физических показателей для данного пользователя
+            return await _dataContext.PhysicalMetricss
+                .Where(pm => pm.UserId == userId)
+                .OrderBy(pm => pm.Date) 
+                .FirstOrDefaultAsync();
+        }
+
+        public async Task<PhysicalMetrics> GetLastPhysicalMetrics(Guid userId)
+        {
+            // Извлекаем последнее измерение физических показателей для данного пользователя
+            return await _dataContext.PhysicalMetricss
+                .Where(pm => pm.UserId == userId)
+                .OrderByDescending(pm => pm.Date) 
+                .FirstOrDefaultAsync();
+        }
+
     }
 }

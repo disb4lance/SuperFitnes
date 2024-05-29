@@ -21,18 +21,38 @@ namespace SuperFitnes.Controllers
         [HttpGet, Route("ProgressView")]
         public async Task<ActionResult> ProgressView(Guid id)
         {
-            // Получаем количество тренировок за последний месяц
+            /// Получаем количество тренировок за последний месяц
             int trainingsCount = _trainMetricsManager.GetTrainingsCountForLastMonth(id);
             // Получаем количество силовых и кардио упражнений за последний месяц
             int strengthExercisesCount = await _exerciseManager.GetStrengthExerciseCountForLastMonth(id);
             int cardioExercisesCount = await _exerciseManager.GetCardioExerciseCountForLastMonth(id);
 
-            // Передаем данные в представление
+            // Получаем первое и последнее измерение веса и обхвата тела пользователя
+            var firstPhysicalMetrics = await _physicalMetricsManager.GetFirstPhysicalMetrics(id);
+            var lastPhysicalMetrics = await _physicalMetricsManager.GetLastPhysicalMetrics(id);
+
+            // Проверяем, что получены значения
+            if (firstPhysicalMetrics != null && lastPhysicalMetrics != null)
+            {
+                // Вычисляем изменение в весе и обхвате тела
+                double weightChange = lastPhysicalMetrics.Weight - firstPhysicalMetrics.Weight;
+                double bodyMeasurementsChange = lastPhysicalMetrics.BodyMeasurements - firstPhysicalMetrics.BodyMeasurements;
+
+                // Передаем данные в представление
+                ViewBag.WeightChange = weightChange;
+                ViewBag.BodyMeasurementsChange = bodyMeasurementsChange;
+            }
+            else
+            {
+                // Если данные отсутствуют, передаем пустые значения в представление
+                ViewBag.WeightChange = 0;
+                ViewBag.BodyMeasurementsChange = 0;
+            }
+
+            // Передаем данные о тренировках и упражнениях в представление
+            ViewBag.TrainingsCount = trainingsCount;
             ViewBag.StrengthExercisesCount = strengthExercisesCount;
             ViewBag.CardioExercisesCount = cardioExercisesCount;
-
-            // Передаем данные в представление
-            ViewBag.TrainingsCount = trainingsCount;
 
             return View();
         }

@@ -2,9 +2,58 @@
 @using SuperFitnes.Features.DtoModels.Exercise
 @model EditExercise
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Exercise</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+            .form-container h2 {
+                margin-bottom: 1.5rem;
+            }
+
+        footer {
+            background-color: #343a40;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            width: 100%;
+        }
+    </style>
+</head>
 <body>
     <div class="content">
-        <div class="login-container">
+        <div class="form-container">
             <h2>Add Exercise</h2>
             @using (Html.BeginForm(nameof(TrainController.CreateTrain), "Train", FormMethod.Post))
             {
@@ -14,12 +63,12 @@
                 @Html.HiddenFor(m => m.TrainingId)
 
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Name)
+                    @Html.LabelFor(m => m.Name, "Exercise Name")
                     @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
                     @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Type)
+                    @Html.LabelFor(m => m.Type, "Exercise Type")
                     @Html.DropDownListFor(m => m.Type, (SelectList)ViewBag.ExerciseTypes, new { @class = "form-control" })
                     @Html.ValidationMessageFor(m => m.Type, "", new { @class = "text-danger" })
                 </div>
