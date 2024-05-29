@@ -3,6 +3,7 @@ using Classes.Database;
 using Classes.models;
 using Logic.Interfaces.Repositories;
 using Logic.Interfaces.Services;
+using Microsoft.EntityFrameworkCore;
 using SuperFitnes.Features.DtoModels.Train;
 using SuperFitnes.Features.DtoModels.User;
 using SuperFitnes.Features.Interfaces;
@@ -28,7 +29,7 @@ namespace SuperFitnes.Features.Managers
         {
             var user = new Train
             {
-                IsnNode = train.IsnNode == Guid.Empty ? Guid.NewGuid() : train.IsnNode,
+                IsnNode = train.IsnNode,
                 DateTime = train.DateTime,
                 UserId = train.UserId
 
@@ -38,5 +39,14 @@ namespace SuperFitnes.Features.Managers
 
             return train.IsnNode;
         }
+        public int GetTrainingsCountForLastMonth(Guid userId)
+        {
+            DateTime oneMonthAgo = DateTime.Now.AddMonths(-1);
+
+            return _dataContext.Trains
+                .Where(t => t.UserId == userId && t.DateTime >= oneMonthAgo)
+                .Count();
+        }
+
     }
 }

@@ -15,6 +15,7 @@ namespace SuperFitnes.Extensions
             services.AddTransient<IUserManager, UserManager>();
             services.AddTransient<IPhysicalMetricsManager, PhysicalMetricsManager>();
             services.AddTransient<ITrainManager, TrainManager>();
+            services.AddTransient<IExerciseManager, ExerciseManager>();
 
         }
     }

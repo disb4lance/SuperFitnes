@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace SuperFitnes.Features.DtoModels.Exercise
 {
@@ -12,5 +13,13 @@ namespace SuperFitnes.Features.DtoModels.Exercise
 
         // Внешний ключ для тренировки
         public Guid TrainingId { get; set; }
+        public static List<SelectListItem> GetExerciseTypes()
+        {
+            return new List<SelectListItem>
+        {
+            new SelectListItem { Value = "Strength", Text = "Силовое" },
+            new SelectListItem { Value = "Cardio", Text = "Кардио" }
+        };
+        }
     }
 }

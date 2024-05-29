@@ -8,6 +8,7 @@ namespace SuperFitnes.Features.Interfaces
 {
     public interface ITrainManager
     {
+        int GetTrainingsCountForLastMonth(Guid userId);
         Guid Create(EditTrain train);
     }
 }

@@ -1,0 +1,35 @@
+﻿@using SuperFitnes.Controllers
+@using SuperFitnes.Features.DtoModels.Exercise
+@model EditExercise
+
+<body>
+    <div class="content">
+        <div class="login-container">
+            <h2>Add Exercise</h2>
+            @using (Html.BeginForm(nameof(TrainController.CreateTrain), "Train", FormMethod.Post))
+            {
+                @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+
+                @Html.HiddenFor(m => m.IsnNode)
+                @Html.HiddenFor(m => m.TrainingId)
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Name)
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Type)
+                    @Html.DropDownListFor(m => m.Type, (SelectList)ViewBag.ExerciseTypes, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Type, "", new { @class = "text-danger" })
+                </div>
+                <button type="submit" name="action" value="continue" class="btn btn-primary btn-block">Continue</button>
+                <button type="submit" name="action" value="addExercise" class="btn btn-secondary btn-block">Add Exercise</button>
+            }
+        </div>
+    </div>
+    <footer>
+        &copy; @DateTime.Now.Year SuperFitnes. All rights reserved.
+    </footer>
+</body>
+</html>

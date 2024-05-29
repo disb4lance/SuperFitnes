@@ -13,7 +13,7 @@ namespace Logic.Repositories
     {
         public Train Create(DataContext dataContext, Train train)
         {
-            train.IsnNode = Guid.NewGuid();
+            //train.IsnNode = Guid.NewGuid();
             dataContext.Trains.Add(train);
             return train;
 
